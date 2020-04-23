@@ -1,0 +1,24 @@
+  <div class="content">
+      <input type="text" ng-model="search" placeholder="Search for a member" />
+      <button ng-click="order = 'belt'">Sort by Color</button>
+      <button ng-click="order = 'name'">Sort by Name</button>
+
+      <ul id="list">
+          <li ng-repeat="x in guys | orderBy: order | filter: search" name="{{x.name}}" ng-show="x.available">
+              <img ng-src="{{x.thumb}}" style="margin:-12px 10px 0 0; float:left; width:35px;" ng-show="x.thumb">
+              <h4>
+                  <span class="cname">{{x.name}}</span> &nbsp;-&nbsp;{{x.rate |
+              currency}}
+              </h4>
+              <div class="remove" ng-click="removex(x)">x</div>
+              <button style="background:{{x.belt}}">{{x.belt}}</button>
+          </li>
+      </ul>
+      <form ng-submit="addx()">
+          <input type="text" placeholder="Member Name" ng-model="newx.name" />
+          <input type="text" placeholder="Color Code" ng-model="newx.belt" />
+          <input type="text" placeholder="Rate" ng-model="newx.rate" />
+          <input type="submit" value="Add new" />
+      </form>
+      <center><button href="" ng-click="removeAll()">Remove All</button></center>
+  </div>
